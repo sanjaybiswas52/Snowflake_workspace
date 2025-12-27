@@ -23,7 +23,7 @@
   
 // Create storage integration object on snowflake
 
-create or replace storage integration s3_buck_int
+create or replace storage integration s3_int
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = S3
   ENABLED = TRUE 
@@ -61,7 +61,7 @@ DESC integration s3_int;
 -- Create External Stage
 CREATE OR REPLACE STAGE COPY_DB.PUBLIC.s3_stage
   URL = 's3://snowflake-buck01/'
-  STORAGE_INTEGRATION = s3_buck_int
+  STORAGE_INTEGRATION = s3_int
   FILE_FORMAT = (TYPE = PARQUET);
 
 -- Export Data (COPY INTO)
@@ -69,3 +69,4 @@ CREATE OR REPLACE STAGE COPY_DB.PUBLIC.s3_stage
 COPY INTO @s3_stage/parquet/orders/
 FROM OUR_FIRST_DB.PUBLIC.ORDERS
 OVERWRITE = TRUE;
+
