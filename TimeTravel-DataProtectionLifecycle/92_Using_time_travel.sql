@@ -53,7 +53,8 @@ SELECT * FROM OUR_FIRST_DB.public.test at (OFFSET => -60*1.5);
 // // // Using time travel: Method 2 - before timestamp
 SELECT * FROM OUR_FIRST_DB.public.test before (timestamp => '2021-04-15 17:47:50.581'::timestamp);
 
-
+SELECT DATEADD(DAY,-1,CURRENT_TIMESTAMP)
+   
 -- Setting up table
 CREATE OR REPLACE TABLE OUR_FIRST_DB.public.test (
    id int,
@@ -126,5 +127,6 @@ SET EMAIL = null;
 SELECT * FROM OUR_FIRST_DB.public.test;
 
 SELECT * FROM OUR_FIRST_DB.public.test before (statement => '019b9ee5-0500-8473-0043-4d8300073062');
+
 
 
